@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script src="../../static/js/vue.js"></script>
+  <script src="../../static/js/plugin.js"></script>
+  <script src="../../static/js/element.js"></script>
+  <link rel="stylesheet" href="../../static/css/plugin.css" type="text/css">
+  <link rel="stylesheet" href="../../static/css/element.css">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+
+<body>
+  <div id="app" class="wrapper row" v-loading="loading" :element-loading-text="loading_text">
+    <div class="box clearfix">
+      <div class="box_block">
+        <div class="clearfix margin_phone col-lg-11 col-lg-offset-1 ">
+          <div class="readme col-lg-11 col-xs-12">
+            <span class="note">帮助提示：</span>
+            <div>💡本插件仅用于远程维护支持，在需要远程支持时请启用本插件，并将GWID提供给技术支持人员。</div>
+          </div>
+          <div class="h20"></div>
+          <div class="line_edit">
+            <span class="input_tit">打开调试：</span>
+            <div class="input_group">
+              <el-switch @change="set_debug_mode" v-model="debugMode"></el-switch>
+            </div>
+          </div>
+          <div class="line_edit">
+            <span class="input_tit">GWID：</span>
+            <div class="input_group">
+              <span>{{ gwid }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
+<script type="module">
+  var app = new Vue({
+    el: '#app',
+    props: ["type"],
+    data: {
+      debugMode: false,
+      gwid: "",
+      loading: false,
+      loading_text: "",
+    },
+    mounted() {
+      this.loadInitData();
+    },
+    methods: {
+      loadInitData() {
+        self = this;
+        var payload = {
+          func_name: 'plugin_debug',
+          action: 'show',
+          param: {
+            TYPE: 'data'
+          }
+        };
+        AjaxPost('/Action/call', payload, (response) => {
+          if (response.Result % 10000 == 0 && response.Data) {
+            const data = response.Data;
+
+            self.gwid = data.gwid;
+            if (data.debugMode === 1) {
+              self.debugMode = true;
+            } else {
+              self.debugMode = false;
+            }
+          }
+        });
+      },
+      set_debug_mode() {
+        var payload = {
+          func_name: 'plugin_debug',
+          action: 'set_debug_mode',
+          param: { debugMode: this.debugMode }
+        };
+        AjaxPost('/Action/call', payload, (response) => {
+          if (response.Result % 10000 == 0) {
+            this.$message({ message: `Debug模式已${this.debugMode ? '启动' : '关闭'}！`, type: 'success' });
+          } else {
+            this.debugMode = !this.debugMode;
+          }
+        });
+      }
+    }
+  });
+</script>
+
+</html>

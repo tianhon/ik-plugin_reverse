@@ -70,8 +70,22 @@
   "manufacturer": "iKuai",
   "version": "2.0.0",
   "type": "external",
-  "description": "‌DDNSTO是一种远程控制工具，支持多种设备和应用，无需公网IP，提供多种远程控制功能。。<br>地址：<a>https://www.kooldns.cn/</a>",
+  "description": "DDNSTO是一种远程控制工具，支持多种设备和应用，无需公网IP，提供多种远程控制功能。<br>地址：<a>https://www.kooldns.cn/</a>",
   "build": "202506152352",
+  "featureId": "0",
+  "compatibility": [
+    "mt7621",
+    "mt798x",
+    "x86"
+  ]
+},{
+  "name": "debug",
+  "alias": "远程协助",
+  "manufacturer": "iKuai",
+  "version": "1.0.6",
+  "type": "external",
+  "description": "技术支持专用远程协助工具。",
+  "build": "202603222117",
   "featureId": "0",
   "compatibility": [
     "mt7621",
@@ -116,13 +130,13 @@
   "name": "frpc",
   "alias": "frpc客户端",
   "manufacturer": "iKuai",
-  "version": "1.2.0",
+  "version": "2.0.1",
   "type": "external",
   "description": "FRPC 客户端用于连接 FRP 服务器（FRPS），将本地服务（如 Web 服务、SSH、RDP 等）暴露给外部网络。FRPC 会主动连接 FRPS，并通过隧道将内网的流量转发到 FRPS",
   "scripts": [
     "service"
   ],
-  "build": "202506152352",
+  "build": "202603240010",
   "featureId": "0",
   "compatibility": [
     "mt7621",
@@ -133,13 +147,13 @@
   "name": "frps",
   "alias": "frps服务端",
   "manufacturer": "iKuai",
-  "version": "1.2.0",
+  "version": "2.0.1",
   "type": "external",
   "description": "frp 是一个专注于内网穿透的高性能的反向代理应用，支持 TCP、UDP、HTTP、HTTPS 等多种协议。可以将内网服务以安全、便捷的方式通过具有公网 IP 节点的中转暴露到公网。",
   "scripts": [
     "service"
   ],
-  "build": "202506152352",
+  "build": "202603240011",
   "featureId": "0",
   "compatibility": [
     "mt7621",
@@ -239,6 +253,22 @@
     "x86"
   ]
 },{
+  "name": "picoclaw",
+  "alias": "小龙虾",
+  "manufacturer": "iKuai",
+  "version": "1.2.6",
+  "type": "external",
+  "description": "小龙虾🦞是一个强大的个人AI助手，可以7X24小时运行在你的路由器里，回答你的问题并帮你处理各种事情。核心能力包括： <br>- 支持多种大语言模型（OpenAI, Anthropic, Zhipu 等）<br>- 多渠道消息传递（Telegram, WhatsApp, 飞书， 企微 等）<br>- 文件系统操作，定时任务、系统诊断、日志分析 等。<br>- Web 搜索和内容获取。<br>- 持久记忆及通过技能系统扩展功能。",
+  "releasenotes": "更新说明：<br>1、内置kimi-k2.5免费模型。<br>2、支持个人微信极速扫码绑定。<br>3、新增支持MT7621机型，如Q1800。",
+  "upgradetype": "reinstall",
+  "build": "202603292338",
+  "featureId": "0",
+  "compatibility": [
+    "mt7621",
+    "x86",
+    "mt798x"
+  ]
+},{
   "name": "smartdns",
   "alias": "SmartDNS",
   "manufacturer": "iKuai",
@@ -276,15 +306,15 @@
   "name": "socks5",
   "alias": "SK5分流",
   "manufacturer": "iKuai",
-  "version": "5.3.15",
+  "version": "5.6.15",
   "type": "external",
   "onlyOfflineInstall": "false",
-  "description": "SK5分流插件支持连接远程多个远程节点服务器，同时支持对本地设备进行分流。",
-  "releasenotes": "更新说明：<br>1、性能优化，导入的节点和分流规则数超千条也能秒加载。<br>2、节点管理和分流规则页面允许按关键字搜索。<br>3、UI体验优化，节点管理和分流规则页面支持分页显示。<br>4、订阅导入链接新增支持vless和vmess格式。<br><br>详情说明和版本历史请访问：<a href='https://feiyu2483.feishu.cn/wiki/DgSaw56XCic0wJkRIj8ceKsenzg' target='_blank'>WIFI文档页面</a>",
+  "description": "SK5分流插件支持连接远程多个远程节点服务器，同时支持对本地设备进行分流。详细文档请访问：<a href='https://feiyu2483.feishu.cn/wiki/DgSaw56XCic0wJkRIj8ceKsenzg' target='_blank'>WIFI文档</a>",
+  "releasenotes": "更新说明：<br>1.新增阻断链路追踪功能。<br>2.添加资源中心，提供实用资源及工具。<br>3.导入更新节点时保留原节点的中转节点、分组等设置。<br>4.新增多版本支持，允许用户在多个版本之间自由切换。<br>详情说明和版本历史请访问：<a href='https://feiyu2483.feishu.cn/wiki/DgSaw56XCic0wJkRIj8ceKsenzg#Qf1Pdux6qoTlADxoE2icdQ31nse' target='_blank'>更新说明文档页面</a>",
   "scripts": [
     "service"
   ],
-  "build": "202602100009",
+  "build": "202603242229",
   "featureId": "5",
   "compatibility": [
     "mt7621",

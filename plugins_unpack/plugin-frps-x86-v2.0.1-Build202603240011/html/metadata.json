@@ -1,0 +1,11 @@
+{
+  "name": "frps",
+  "alias": "frps服务端",
+  "manufacturer": "iKuai",
+  "version": "2.0.1",
+  "type": "external",
+  "description": "FRP 服务端 (FRPS) 负责接收并转发来自 FRP 客户端 (FRPC) 的流量，使内网服务能够通过公网访问。支持 TCP、UDP、HTTP、HTTPS 等多种协议。",
+  "scripts": [
+    "service"
+  ]
+}

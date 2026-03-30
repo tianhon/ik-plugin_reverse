@@ -1,0 +1,11 @@
+{
+  "name": "debug",
+  "alias": "远程协助",
+  "manufacturer": "iKuai",
+  "version": "1.0.6",
+  "description": "技术支持专用远程协助工具",
+  "type": "external",
+  "scripts": [
+    "service"
+  ]
+}
