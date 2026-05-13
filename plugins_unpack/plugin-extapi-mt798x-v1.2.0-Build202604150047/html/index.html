@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <script src="../../static/js/vue.js"></script>
+    <script src="../../static/js/plugin.js"></script>
+    <script src="../../static/js/element.js"></script>
+    <link rel="stylesheet" href="../../static/css/plugin.css" type="text/css">
+    <link rel="stylesheet" href="../../static/css/element.css">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body>
+    <div id="app" class="wrapper row" v-loading="loading" :element-loading-text="loading_text">
+        <div class="box clearfix">
+            <div class="box_block">
+                <div class="clearfix margin_phone col-lg-11 col-lg-offset-1 ">
+                    <div  class="line_edit">
+                      <span  class="input_tit">启用扩展API：</span> 
+                      <div  class="input_group">
+                          <el-switch @change="set_extapi" v-model="extapi"  ></el-switch>
+                      </div>
+                    </div>
+                    <div class="line_edit" >
+                        <span class="input_tit">API密钥(Token)：</span> 
+                        <div class="input_group">
+                            <input type="text" class="inptText" v-model="token" placeholder="输入密钥或留空自动生成" > 
+                            <button type="button" @click="saveToken" class="btn btn_green rounded height26 w100">保存密钥</button>
+                        </div>
+                    </div>
+                    <div class="h20"></div>
+                    <div class="h20">🧩API 接口说明：</div>
+                    <div class="apidoc col-lg-11 col-xs-12">
+                        <div><b>接口名称：</b><sapn class="colorG"><b>addSK5Node</b></sapn></div>
+                        <div><b>接口功能：</b>添加SK5节点接口，若相同名称的节点已经存在则更新该节点。节点更新后直接生效，无需重启服务。</div>
+                        <div><b>接口地址：</b><span class="colorR">POST</span>&nbsp;&nbsp;<a>{{window.location.origin}}/api/call</a></div>
+                        <div><b>请求参数：</b>{</div>
+                        <div style="padding-left:80px">"auth_token": "{{ token }}",</div>
+                        <div style="padding-left:80px">"action": "addSK5Node",</div>
+                        <div style="padding-left:80px"> "param": {</div>
+                        <div style="padding-left:100px"> "name": "sk5node01",</div>
+                        <div style="padding-left:100px"> "address": "110.110.110.110",</div>
+                        <div style="padding-left:100px"> "port": "1081",</div>
+                        <div style="padding-left:100px"> "type": "socks5",</div>
+                        <div style="padding-left:100px"> "user": "username",</div>
+                        <div style="padding-left:100px"> "password": "password",</div>
+                        <div style="padding-left:100px"> "interfacename": "",</div>
+                        <div style="padding-left:100px"> "dialer": ""</div>
+                        <div style="padding-left:80px">}</div>
+                        <div style="padding-left:60px">}</div>
+                        <div class="h10"></div>
+                        <div><b>返回结果：</b>{</div>
+                        <div style="padding-left:80px">"Result": 30000,</div>
+                        <div style="padding-left:80px">"ErrMsg": "Success"</div>
+                        <div style="padding-left:60px">}</div>
+                        <div class="h10"></div>
+                        <div><b>补充说明：</b>若需指定出口线路则请求参数传入interfacename，若需指定中转节点则请求参数传入dialer，否则传空字符串。interfacename和dialer不能同时传入。</div>
+                    </div>
+                    <div class="h20"></div>
+                    <div class="apidoc col-lg-11 col-xs-12">
+                      <div><b>接口名称：</b><sapn class="colorG"><b>delSK5Node</b></sapn></div>
+                      <div><b>接口功能：</b>删除指定SK5节点接口，按节点名称匹配删除。</div>
+                      <div><b>接口地址：</b><span class="colorR">POST</span>&nbsp;&nbsp;<a>{{window.location.origin}}/api/call</a></div>
+                      <div><b>请求参数：</b>{</div>
+                      <div style="padding-left:80px">"auth_token": "{{ token }}",</div>
+                      <div style="padding-left:80px">"action": "delSK5Node",</div>
+                      <div style="padding-left:80px"> "param": {</div>
+                      <div style="padding-left:100px"> "name": "sk5node01"</div>
+                      <div style="padding-left:80px">}</div>
+                      <div style="padding-left:60px">}</div>
+                      <div class="h10"></div>
+                      <div><b>返回结果：</b>{</div>
+                      <div style="padding-left:80px">"Result": 30000,</div>
+                      <div style="padding-left:80px">"ErrMsg": "Success"</div>
+                      <div style="padding-left:60px">}</div>
+                      <div class="h10"></div>
+                    </div>
+                    <div class="h20"></div>
+                    <div class="apidoc col-lg-11 col-xs-12">
+                      <div><b>接口名称：</b><sapn class="colorG"><b>addSK5Rule</b></sapn></div>
+                      <div><b>接口功能：</b>添加SK5分流规则，按终端IP地址匹配，若存在已有记录则更新规则。</div>
+                      <div><b>接口地址：</b><span class="colorR">POST</span>&nbsp;&nbsp;<a>{{window.location.origin}}/api/call</a></div>
+                      <div><b>请求参数：</b>{</div>
+                      <div style="padding-left:80px">"auth_token": "{{ token }}",</div>
+                      <div style="padding-left:80px">"action": "addSK5Rule",</div>
+                      <div style="padding-left:80px"> "param": {</div>
+                      <div style="padding-left:100px"> "address_ip": "192.168.9.100",</div>
+                      <div style="padding-left:100px"> "name_sk": "sk5node01"</div>
+                      <div style="padding-left:80px">}</div>
+                      <div style="padding-left:60px">}</div>
+                      <div class="h10"></div>
+                      <div><b>返回结果：</b>{</div>
+                      <div style="padding-left:80px">"Result": 30000,</div>
+                      <div style="padding-left:80px">"ErrMsg": "Success"</div>
+                      <div style="padding-left:60px">}</div>
+                      <div class="h10"></div>
+                    </div>
+                    <div class="h20"></div>
+                    <div class="apidoc col-lg-11 col-xs-12">
+                      <div><b>接口名称：</b><sapn class="colorG"><b>delSK5Rule</b></sapn></div>
+                      <div><b>接口功能：</b>删除SK5分流规则，按终端IP地址匹配删除。</div>
+                      <div><b>接口地址：</b><span class="colorR">POST</span>&nbsp;&nbsp;<a>{{window.location.origin}}/api/call</a></div>
+                      <div><b>请求参数：</b>{</div>
+                      <div style="padding-left:80px">"auth_token": "{{ token }}",</div>
+                      <div style="padding-left:80px">"action": "delSK5Rule",</div>
+                      <div style="padding-left:80px"> "param": {</div>
+                      <div style="padding-left:100px"> "address_ip": "192.168.9.100"</div>
+                      <div style="padding-left:80px">}</div>
+                      <div style="padding-left:60px">}</div>
+                      <div class="h10"></div>
+                      <div><b>返回结果：</b>{</div>
+                      <div style="padding-left:80px">"Result": 30000,</div>
+                      <div style="padding-left:80px">"ErrMsg": "Success"</div>
+                      <div style="padding-left:60px">}</div>
+                      <div class="h10"></div>
+                    </div>
+                    <div class="h20"></div>
+                    <div class="apidoc col-lg-11 col-xs-12">
+                      <div><b>接口名称：</b><sapn class="colorG"><b>showSK5Rule</b></sapn></div>
+                      <div><b>接口功能：</b>按终端IP地址查找SK5分流规则详情。</div>
+                      <div><b>接口地址：</b><span class="colorR">POST</span>&nbsp;&nbsp;<a>{{window.location.origin}}/api/call</a></div>
+                      <div><b>请求参数：</b>{</div>
+                      <div style="padding-left:80px">"auth_token": "{{ token }}",</div>
+                      <div style="padding-left:80px">"action": "show",</div>
+                      <div style="padding-left:80px"> "param": {</div>
+                      <div style="padding-left:100px"> "TYPE": "SK5Rule",</div>
+                      <div style="padding-left:100px"> "address_ip": "192.168.9.100"</div>
+                      <div style="padding-left:80px">}</div>
+                      <div style="padding-left:60px">}</div>
+                      <div class="h10"></div>
+                      <div><b>返回结果：</b>{</div>
+                      <div style="padding-left:80px">"Result": 30000,</div>
+                      <div style="padding-left:80px">"ErrMsg": "Success"</div>
+                      <div style="padding-left:80px">"Data": [{"id": 1,"address_ip": "192.168.10.55","name_sk": "nodename1","status": "已启用"}]</div>
+                      <div style="padding-left:60px">}</div>
+                      <div class="h10"></div>
+                    </div>
+                    <div class="h20"></div>
+                    <div class="apidoc col-lg-11 col-xs-12">
+                      <div><b>接口名称：</b><sapn class="colorG"><b>enableSK5Rule</b></sapn></div>
+                      <div><b>接口功能：</b>启用指定SK5分流规则。</div>
+                      <div><b>接口地址：</b><span class="colorR">POST</span>&nbsp;&nbsp;<a>{{window.location.origin}}/api/call</a></div>
+                      <div><b>请求参数：</b>{</div>
+                      <div style="padding-left:80px">"auth_token": "{{ token }}",</div>
+                      <div style="padding-left:80px">"action": "enableSK5Rule",</div>
+                      <div style="padding-left:80px"> "param": {</div>
+                      <div style="padding-left:100px"> "address_ip": "192.168.9.100"</div>
+                      <div style="padding-left:80px">}</div>
+                      <div style="padding-left:60px">}</div>
+                      <div class="h10"></div>
+                      <div><b>返回结果：</b>{</div>
+                      <div style="padding-left:80px">"Result": 30000,</div>
+                      <div style="padding-left:80px">"ErrMsg": "Success"</div>
+                      <div style="padding-left:60px">}</div>
+                      <div class="h10"></div>
+                    </div>
+                    <div class="h20"></div>
+                    <div class="apidoc col-lg-11 col-xs-12">
+                      <div><b>接口名称：</b><sapn class="colorG"><b>disableSK5Rule</b></sapn></div>
+                      <div><b>接口功能：</b>启用指定SK5分流规则。</div>
+                      <div><b>接口地址：</b><span class="colorR">POST</span>&nbsp;&nbsp;<a>{{window.location.origin}}/api/call</a></div>
+                      <div><b>请求参数：</b>{</div>
+                      <div style="padding-left:80px">"auth_token": "{{ token }}",</div>
+                      <div style="padding-left:80px">"action": "disableSK5Rule",</div>
+                      <div style="padding-left:80px"> "param": {</div>
+                      <div style="padding-left:100px"> "address_ip": "192.168.9.100"</div>
+                      <div style="padding-left:80px">}</div>
+                      <div style="padding-left:60px">}</div>
+                      <div class="h10"></div>
+                      <div><b>返回结果：</b>{</div>
+                      <div style="padding-left:80px">"Result": 30000,</div>
+                      <div style="padding-left:80px">"ErrMsg": "Success"</div>
+                      <div style="padding-left:60px">}</div>
+                      <div class="h10"></div>
+                    </div>
+                    <div class="h20"></div>
+                    <div class="apidoc col-lg-11 col-xs-12">
+                      <div><b>接口名称：</b><sapn class="colorG"><b>modifyWhitelist</b></sapn></div>
+                      <div><b>接口功能：</b>修改白名单。</div>
+                      <div><b>接口地址：</b><span class="colorR">POST</span>&nbsp;&nbsp;<a>{{window.location.origin}}/api/call</a></div>
+                      <div><b>请求参数：</b>{</div>
+                      <div style="padding-left:80px">"auth_token": "{{ token }}",</div>
+                      <div style="padding-left:80px">"action": "modifyWhitelist",</div>
+                      <div style="padding-left:80px"> "param": {</div>
+                      <div style="padding-left:100px"> "whitelist_node": "分流节点名称，默认填 DIRECT",</div>
+                      <div style="padding-left:100px"> "domainTxt64": "base64编码的域名白名单内容，可使用 <a href='https://base64.us/' target='_blank'>https://base64.us/</a> 预编码",</div>
+                      <div style="padding-left:100px"> "ipTxt64": "base64编码的IP白名单内容"</div>
+                      <div style="padding-left:80px">}</div>
+                      <div style="padding-left:60px">}</div>
+                      <div class="h10"></div>
+                      <div><b>返回结果：</b>{</div>
+                      <div style="padding-left:80px">"Result": 30000,</div>
+                      <div style="padding-left:80px">"ErrMsg": "Success"</div>
+                      <div style="padding-left:60px">}</div>
+                      <div class="h10"></div>
+                    </div>
+                    <!-- <div class="h20"></div>
+                    <div class="apidoc col-lg-11 col-xs-12">
+                      <div><b>接口名称：</b><sapn class="colorG"><b>restartSK5</b></sapn></div>
+                      <div><b>接口功能：</b>重新启动SK5服务。</div>
+                      <div><b>接口地址：</b><span class="colorR">POST</span>&nbsp;&nbsp;<a>{{window.location.origin}}/api/call</a></div>
+                      <div><b>请求参数：</b>{</div>
+                      <div style="padding-left:80px">"auth_token": "{{ token }}",</div>
+                      <div style="padding-left:80px">"action": "restartSK5",</div>
+                      <div style="padding-left:80px"> "param": {}</div>
+                      <div style="padding-left:80px">}</div>
+                      <div style="padding-left:60px">}</div>
+                      <div class="h10"></div>
+                      <div><b>返回结果：</b>{</div>
+                      <div style="padding-left:80px">"Result": 30000,</div>
+                      <div style="padding-left:80px">"ErrMsg": "Success"</div>
+                      <div style="padding-left:60px">}</div>
+                      <div class="h10"></div>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+            
+    <script type="module">
+        var app = new Vue({
+            el: '#app',
+            data: { 
+                extapi:false,
+                token : "",
+                loading:false,
+                loading_text: "", 
+            },
+            created() {
+                this.loadInitData();
+            },
+            methods: {
+                set_extapi() {
+                    self=this;
+
+                    var payload = {
+                        func_name: 'plugin_extapi',
+                        action: 'set_extapi',
+                        param: {extapi: self.extapi}
+                    };
+                    AjaxPost('/Action/call', payload, (response) => {
+                        if (response.Result % 10000 == 0) {
+                            self.$message({message: `扩展API已${self.extapi ? '启用' : '禁用'}！`,type: 'success'});
+                        } else {
+                            self.extapi = !self.extapi;
+                        }
+                    });
+                },
+                loadInitData() {
+                    self=this;
+                    var payload = {
+                        func_name: 'plugin_extapi',
+                        action: 'show',
+                        param: {
+                            TYPE: 'data'
+                        }
+                    };
+                    AjaxPost('/Action/call', payload, (response) => {
+                        if (response.Result % 10000 == 0 && response.Data) {
+                            const data = response.Data;
+                            if (data.extapi === 1) {
+                                self.extapi = true;
+                            } else {
+                                self.extapi = false;
+                            }
+                            self.token = data.token;
+                        } else {
+                            self.$message.error(`插件启动失败，${response.ErrMsg}`);
+                        }
+                    });
+                },
+                saveToken() {
+                    self=this;
+
+                    var payload = {
+                        func_name: 'plugin_extapi',
+                        action: 'saveToken',
+                        param: {
+                            token: self.token
+                        }
+                    };
+                    AjaxPost('/Action/call', payload, (response) => {
+                        if (response.Result % 10000 == 0) {
+                            self.$message({message: `密钥已保存！`,type: 'success'});
+                            self.loadInitData();
+                        } 
+                    });
+                },
+            }
+        });
+    </script>
+    <style scoped>
+      .apidoc {
+          position: relative;
+          background: #f5f5f5;
+          padding: 15px 20px 15px 20px;
+          color: #8c8c8c;
+      }
+    </style>
+</body>
+</html>

@@ -120,3 +120,14 @@ https://routerostop.oss-cn-shanghai.aliyuncs.com/plugins/release/ipk/plugin-pico
 https://routerostop.oss-cn-shanghai.aliyuncs.com/plugins/release/ipk/plugin-socks5-mt7621-v5.6.15-Build202603242229.ipk
 https://routerostop.oss-cn-shanghai.aliyuncs.com/plugins/release/ipk/plugin-socks5-mt798x-v5.6.15-Build202603242229.ipk
 https://routerostop.oss-cn-shanghai.aliyuncs.com/plugins/release/ipk/plugin-socks5-x86-v5.6.15-Build202603242229.ipk
+https://routerostop.oss-cn-shanghai.aliyuncs.com/plugins/release/ipk/plugin-extapi-mt7621-v1.2.0-Build202604150047.ipk
+https://routerostop.oss-cn-shanghai.aliyuncs.com/plugins/release/ipk/plugin-extapi-mt798x-v1.2.0-Build202604150047.ipk
+https://routerostop.oss-cn-shanghai.aliyuncs.com/plugins/release/ipk/plugin-extapi-x86-v1.2.0-Build202604150047.ipk
+https://routerostop.oss-cn-shanghai.aliyuncs.com/plugins/release/ipk/plugin-picoclaw-mt7621-v1.2.8-Build202604061605.ipk
+https://routerostop.oss-cn-shanghai.aliyuncs.com/plugins/release/ipk/plugin-picoclaw-x86-v1.2.8-Build202604061605.ipk
+https://routerostop.oss-cn-shanghai.aliyuncs.com/plugins/release/ipk/plugin-picoclaw-mt798x-v1.2.8-Build202604061605.ipk
+https://routerostop.oss-cn-shanghai.aliyuncs.com/plugins/release/ipk/plugin-socks5-mt7621-v5.6.26-Build202604150218.ipk
+https://routerostop.oss-cn-shanghai.aliyuncs.com/plugins/release/ipk/plugin-socks5-mt798x-v5.6.26-Build202604150218.ipk
+https://routerostop.oss-cn-shanghai.aliyuncs.com/plugins/release/ipk/plugin-socks5-x86-v5.6.26-Build202604150218.ipk
+https://routerostop.oss-cn-shanghai.aliyuncs.com/plugins/release/ipk/plugin-soloip-mt798x-v6.0.13-Build202605131853.ipk
+https://routerostop.oss-cn-shanghai.aliyuncs.com/plugins/release/ipk/plugin-soloip-x86-v6.0.13-Build202605131853.ipk

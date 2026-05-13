@@ -1,0 +1,13 @@
+model_list:
+  内置免费模型-KIMI-K2.5:0:
+    api_keys:
+      - https://github.com/smanx/free-api
+  内置免费模型-GLM5:0:
+    api_keys:
+      - https://github.com/smanx/free-api
+  内置免费模型-MINIMAX-M2.5:0:
+    api_keys:
+      - https://github.com/smanx/free-api
+channels: {}
+web: {}
+skills: {}

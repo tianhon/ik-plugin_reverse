@@ -1,0 +1,13 @@
+{
+  "name": "picoclaw",
+  "alias": "小龙虾",
+  "manufacturer": "iKuai",
+  "version": "1.2.8",
+  "type": "external",
+  "upgradetype": "reinstall",
+  "description": "小龙虾🦞是一个强大的个人AI助手，可以7X24小时运行在你的路由器里，回答你的问题并帮你处理各种事情。核心能力包括： <br>- 支持多种大语言模型（OpenAI, Anthropic, Zhipu 等）<br>- 多渠道消息传递（Telegram, WhatsApp, 飞书， 企微 等）<br>- 文件系统操作，定时任务、系统诊断、日志分析 等。<br>- Web 搜索和内容获取。<br>- 持久记忆及通过技能系统扩展功能。",
+  "releasenotes": "更新说明：<br>1、内置kimi-k2.5免费模型。<br>2、支持个人微信极速扫码绑定。<br>3、新增支持MT7621机型，如Q1800。",
+  "scripts": [
+    "service"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "name": "socks5",
+  "alias": "SK5分流",
+  "manufacturer": "iKuai",
+  "version": "5.6.26",
+  "type": "external",
+  "description": "Socks5 插件支持连接远程多个socks5服务器，同时支持本地设备进行分流。详细文档请访问：<a href='https://feiyu2483.feishu.cn/wiki/DgSaw56XCic0wJkRIj8ceKsenzg' target='_blank'>WIFI文档</a>",
+  "releasenotes": "更新说明：<br>1.新增阻断链路追踪功能。<br>2.添加资源中心，提供实用资源及工具。<br>3.导入更新节点时保留原节点的中转节点、分组等设置。<br>4.新增多版本支持，允许用户在多个版本之间自由切换。<br>详情说明和版本历史请访问：<a href='https://feiyu2483.feishu.cn/wiki/DgSaw56XCic0wJkRIj8ceKsenzg#Qf1Pdux6qoTlADxoE2icdQ31nse' target='_blank'>更新说明文档页面</a>",
+  "scripts": [
+    "service"
+  ]
+}

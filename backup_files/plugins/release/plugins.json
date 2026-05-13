@@ -115,11 +115,12 @@
     "name": "extapi",
     "alias": "扩展API",
     "manufacturer": "",
-    "version": "1.1.2",
+    "version": "1.2.0",
     "type": "external",
     "description": "扩展API插件可以提供扩展API接口，用于外部系统调用来实现自动化功能。",
+    "releasenotes": "更新说明：\n1. 优化了白名单接口参数，支持直接传入base64编码的域名和IP白名单内容，并支持指定分流节点。",
     "scripts":["service"],
-    "build": "202512030028",
+    "build": "202604150047",
     "featureId": "3",
     "compatibility": [
         "mt7621",
@@ -256,12 +257,12 @@
   "name": "picoclaw",
   "alias": "小龙虾",
   "manufacturer": "iKuai",
-  "version": "1.2.6",
+  "version": "1.2.8",
   "type": "external",
   "description": "小龙虾🦞是一个强大的个人AI助手，可以7X24小时运行在你的路由器里，回答你的问题并帮你处理各种事情。核心能力包括： <br>- 支持多种大语言模型（OpenAI, Anthropic, Zhipu 等）<br>- 多渠道消息传递（Telegram, WhatsApp, 飞书， 企微 等）<br>- 文件系统操作，定时任务、系统诊断、日志分析 等。<br>- Web 搜索和内容获取。<br>- 持久记忆及通过技能系统扩展功能。",
   "releasenotes": "更新说明：<br>1、内置kimi-k2.5免费模型。<br>2、支持个人微信极速扫码绑定。<br>3、新增支持MT7621机型，如Q1800。",
   "upgradetype": "reinstall",
-  "build": "202603292338",
+  "build": "202604061605",
   "featureId": "0",
   "compatibility": [
     "mt7621",
@@ -306,7 +307,7 @@
   "name": "socks5",
   "alias": "SK5分流",
   "manufacturer": "iKuai",
-  "version": "5.6.15",
+  "version": "5.6.26",
   "type": "external",
   "onlyOfflineInstall": "false",
   "description": "SK5分流插件支持连接远程多个远程节点服务器，同时支持对本地设备进行分流。详细文档请访问：<a href='https://feiyu2483.feishu.cn/wiki/DgSaw56XCic0wJkRIj8ceKsenzg' target='_blank'>WIFI文档</a>",
@@ -314,10 +315,28 @@
   "scripts": [
     "service"
   ],
-  "build": "202603242229",
+  "build": "202604150218",
   "featureId": "5",
   "compatibility": [
     "mt7621",
+    "mt798x",
+    "x86"
+  ]
+},{
+  "name": "soloip",
+  "alias": "飞鱼分流",
+  "manufacturer": "iKuai",
+  "version": "6.0.13",
+  "type": "external",
+  "onlyOfflineInstall": "false",
+  "description": "飞鱼分流（SoloIP）专为工作室场景打造，支持游戏、电商运营多账号环境，实现真正一机一网独立IP。<br> 全面支持SK5、SS、VMess、VLess、Trojan、Hysteria等众多主流协议。详细文档请访问：<a href='https://feiyu2483.feishu.cn/wiki/DgSaw56XCic0wJkRIj8ceKsenzg' target='_blank'>WIFI文档</a>",
+  "releasenotes": "",
+  "scripts": [
+    "service"
+  ],
+  "build": "202605131853",
+  "featureId": "5",
+  "compatibility": [
     "mt798x",
     "x86"
   ]
