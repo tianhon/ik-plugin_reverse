@@ -1,0 +1,12 @@
+{
+  "name": "soloip",
+  "alias": "飞鱼分流 6.1",
+  "manufacturer": "iKuai",
+  "version": "6.1.3",
+  "type": "external",
+  "description": "飞鱼分流专为工作室场景打造，支持游戏、电商运营多账号环境，实现真正一机一网独立IP， 全面支持SK5、SS、VMess、VLess、Trojan、Hysteria等众多主流协议。详细文档请访问：<a href='https://feiyu2483.feishu.cn/wiki/DgSaw56XCic0wJkRIj8ceKsenzg' target='_blank'>WIFI文档</a>",
+  "releasenotes": "",
+  "scripts": [
+    "service"
+  ]
+}
