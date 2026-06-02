@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>SoloIP Loading...</title>
+  <style>
+    body {
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      font-family: sans-serif;
+    }
+
+    .box {
+      text-align: center;
+      background: white;
+      padding: 40px;
+    }
+
+    .loader {
+      border: 3px solid #f3f3f3;
+      border-top: 3px solid #0088cc;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 15px;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+  <script>
+    // 立即跳转，避免闪动
+    // var target = "http://" + window.location.hostname + "/soloip/ui/";
+    window.location.replace("/soloip/ui/");
+  </script>
+</head>
+
+<body>
+  <div class="box">
+    <div class="loader"></div>
+    <p>正在加载...</p>
+  </div>
+</body>
+
+</html>
