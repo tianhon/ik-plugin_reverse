@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>飞鱼分流正在启动</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #ffffff;
+      color: #1f2937;
+      font-family: Arial, "Microsoft YaHei", sans-serif;
+    }
+
+    .panel {
+      width: min(600px, calc(100vw - 32px));
+      padding: 30px 32px;
+      border: 1px solid #dfe7f1;
+      border-radius: 8px;
+      background: #ffffff;
+      box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+      color: #0f6fb7;
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    .brand-logo {
+      width: 28px;
+      height: 28px;
+      flex: 0 0 28px;
+      border-radius: 6px;
+      display: block;
+    }
+
+    h1 {
+      margin: 0 0 12px;
+      font-size: 22px;
+      line-height: 1.35;
+      font-weight: 700;
+      color: #111827;
+      white-space: nowrap;
+    }
+
+    p {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.8;
+      color: #526070;
+    }
+
+    .progress-wrap {
+      margin: 24px 0 12px;
+    }
+
+    .progress-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 8px;
+      color: #526070;
+      font-size: 13px;
+    }
+
+    .progress {
+      width: 100%;
+      height: 8px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: #e8eef6;
+    }
+
+    .progress-bar {
+      width: 0;
+      height: 100%;
+      border-radius: inherit;
+      background: #0f6fb7;
+      transition: width 0.3s ease;
+    }
+
+    .status {
+      min-height: 24px;
+      margin-top: 12px;
+      color: #334155;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    @media (max-width: 520px) {
+      body {
+        align-items: flex-start;
+        padding-top: 48px;
+      }
+
+      .panel {
+        padding: 24px 20px;
+      }
+
+      h1 {
+        white-space: normal;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="panel">
+    <div class="brand">
+      <img class="brand-logo" src="/plugins/soloip/logo.png" alt="">
+      <span>飞鱼分流</span>
+    </div>
+    <h1>正在进行自检及资源优化，请稍后...</h1>
+    <p>通常 1 分钟内即可完成。页面会自动检测，准备好后将进入控制台。</p>
+
+    <div class="progress-wrap">
+      <div class="progress-meta">
+        <span>启动进度</span>
+        <span id="progressText">0%</span>
+      </div>
+      <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <div id="progressBar" class="progress-bar"></div>
+      </div>
+      <div id="statusText" class="status">正在进行自检及资源优化...</div>
+    </div>
+  </main>
+
+  <script>
+    (function () {
+      var targetURL = "/soloip/ui/";
+      var healthURL = "/soloip/api/v1/system/version";
+      var totalSeconds = 60;
+      var pollSeconds = 3;
+      var startedAt = Date.now();
+      var progressTimer = null;
+      var pollTimer = null;
+      var statusText = document.getElementById("statusText");
+      var progressText = document.getElementById("progressText");
+      var progressBar = document.getElementById("progressBar");
+      var progressNode = document.querySelector(".progress");
+
+      function setProgress(percent) {
+        var value = Math.max(0, Math.min(100, percent));
+        progressBar.style.width = value + "%";
+        progressText.textContent = Math.round(value) + "%";
+        progressNode.setAttribute("aria-valuenow", String(Math.round(value)));
+      }
+
+      function updateProgress() {
+        var elapsedSeconds = (Date.now() - startedAt) / 1000;
+        var percent = elapsedSeconds / totalSeconds * 100;
+        setProgress(percent);
+        if (percent >= 100) {
+          statusText.textContent = "仍在自检及资源优化中，请继续稍候...";
+          startedAt = Date.now();
+          setProgress(0);
+        }
+      }
+
+      function scheduleNextPoll() {
+        clearTimeout(pollTimer);
+        pollTimer = setTimeout(checkService, pollSeconds * 1000);
+      }
+
+      function checkService() {
+        statusText.textContent = "正在检测启动状态...";
+        var controller = window.AbortController ? new AbortController() : null;
+        var timeout = setTimeout(function () {
+          if (controller) {
+            controller.abort();
+          }
+        }, 1800);
+        var options = {
+          cache: "no-store",
+          headers: {
+            "Cache-Control": "no-cache"
+          }
+        };
+        if (controller) {
+          options.signal = controller.signal;
+        }
+
+        fetch(healthURL, options).then(function (response) {
+          clearTimeout(timeout);
+          if (!response.ok) {
+            throw new Error("HTTP " + response.status);
+          }
+          setProgress(100);
+          statusText.textContent = "自检完成，正在进入控制台...";
+          window.location.replace(targetURL);
+        }).catch(function () {
+          clearTimeout(timeout);
+          statusText.textContent = "正在进行自检及资源优化，请稍后...";
+          scheduleNextPoll();
+        });
+      }
+
+      progressTimer = setInterval(updateProgress, 500);
+      updateProgress();
+      checkService();
+
+      window.addEventListener("beforeunload", function () {
+        clearInterval(progressTimer);
+        clearTimeout(pollTimer);
+      });
+    })();
+  </script>
+</body>
+
+</html>
