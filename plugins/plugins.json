@@ -270,6 +270,23 @@
     "mt798x"
   ]
 },{
+  "name": "routerguard",
+  "alias": "入侵防护",
+  "manufacturer": "iKuai",
+  "version": "1.0.0",
+  "type": "external",
+  "description": "限制访问路由器本机的入口，用于增强路由的安全防护能力，以及预防可疑入侵。",
+  "scripts": [
+    "service"
+  ],
+  "build": "202607050233",
+  "featureId": "0",
+  "compatibility": [
+    "mt7621",
+    "mt798x",
+    "x86"
+  ]
+},{
   "name": "smartdns",
   "alias": "SmartDNS",
   "manufacturer": "iKuai",

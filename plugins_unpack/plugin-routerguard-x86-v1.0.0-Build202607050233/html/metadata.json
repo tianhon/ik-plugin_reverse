@@ -1,0 +1,9 @@
+{
+    "name": "routerguard",
+    "alias": "入侵防护",
+    "manufacturer": "iKuai",
+    "version": "1.0.0",
+    "type": "external",
+    "description": "限制访问路由器本机的入口，用于未知风险应急收敛。默认根据当前访问来源生成可信 IP/MAC。",
+    "scripts": ["service"]
+}
